@@ -1,8 +1,10 @@
+package main;
+
 import javax.swing.*;
 import java.awt.*;
 
 public class GamePanel extends JPanel implements Runnable{
-    /** GamePanel:
+    /** main.GamePanel:
      *  a primary drawing surface where all game elements
      * (characters, backgrounds, objects) are
      * rendered and updated within a game loop **/
@@ -26,7 +28,7 @@ public class GamePanel extends JPanel implements Runnable{
     }
     public void launchGame(){
         gameThread = new Thread(this);
-        gameThread.start(); // Automaticlally calls run
+        gameThread.start(); // Automatically calls run
     }
 
     @Override
