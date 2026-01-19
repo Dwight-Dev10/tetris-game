@@ -26,8 +26,8 @@ public class Arks_T extends Arks_main{
 
     public void getDirections1() {
         //   o
-        // o o o
-
+        //   o o
+        //   o
         tempB[0].x = b[0].x;
         tempB[0].y = b[0].y;
         tempB[1].x = b[0].x;
@@ -41,8 +41,8 @@ public class Arks_T extends Arks_main{
     }
     public void getDirections2() {
         //   o
-        // o o o
-
+        // o o
+        //   o
         tempB[0].x = b[0].x;
         tempB[0].y = b[0].y;
         tempB[1].x = b[0].x + Block.SIZE;
@@ -61,11 +61,11 @@ public class Arks_T extends Arks_main{
         tempB[0].x = b[0].x;
         tempB[0].y = b[0].y;
         tempB[1].x = b[0].x;
-        tempB[1].y = b[0].y - Block.SIZE;
-        tempB[2].x = b[0].x;
-        tempB[2].y = b[0].y + Block.SIZE;
+        tempB[1].y = b[0].y + Block.SIZE;
+        tempB[2].x = b[0].x - Block.SIZE;
+        tempB[2].y = b[0].y;
         tempB[3].x = b[0].x + Block.SIZE;
-        tempB[3].y = b[0].y + Block.SIZE;
+        tempB[3].y = b[0].y;
         updateXY(3);
     }
     public void getDirections4() {
@@ -78,8 +78,8 @@ public class Arks_T extends Arks_main{
         tempB[1].y = b[0].y - Block.SIZE;
         tempB[2].x = b[0].x;
         tempB[2].y = b[0].y + Block.SIZE;
-        tempB[3].x = b[0].x;
-        tempB[3].y = b[0].y - Block.SIZE;
+        tempB[3].x = b[0].x - Block.SIZE;
+        tempB[3].y = b[0].y;
 
         updateXY(4);
     }

@@ -1,10 +1,9 @@
 package main;
 
-import arks.Arks_main;
-import arks.Arks_L1;
-import arks.Block;
+import arks.*;
 
 import java.awt.*;
+import java.util.Random;
 
 public class PlayManager {
     // Draws the play area
@@ -36,8 +35,27 @@ public class PlayManager {
         ARKS_START_Y = top_y + Block.SIZE;
 
         // Starting Ark
-        currentArks = new Arks_L1();
+        //currentArks = pickArk();
+        currentArks = new Arks_L2();
         currentArks.setXY(ARKS_START_X,ARKS_START_Y);
+
+    }
+    private Arks_main pickArk(){
+
+        // Pick random ark
+        Arks_main arks = null;
+        int i = new Random().nextInt(7); // 0 - 6
+        switch (i){
+            case 0: arks = new Arks_Bar();break;
+            case 1: arks = new Arks_L1();break;
+            case 2: arks = new Arks_L2();break;
+            case 3: arks = new Arks_Square();break;
+            case 4: arks = new Arks_T();break;
+            case 5: arks = new Arks_Z1();break;
+            case 6: arks = new Arks_Z2();break;
+        }
+        return arks;
+
 
     }
 

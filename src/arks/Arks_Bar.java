@@ -4,7 +4,7 @@ import java.awt.*;
 
 public class Arks_Bar extends Arks_main {
 
-    public void Arks_Bar() {
+    public Arks_Bar() {
         create(Color.DARK_GRAY);
     }
 
@@ -33,7 +33,7 @@ public class Arks_Bar extends Arks_main {
         tempB[1].y = b[0].y;
         tempB[2].x = b[0].x + Block.SIZE;
         tempB[2].y = b[0].y;
-        tempB[3].x = b[0].x + Block.SIZE;
+        tempB[3].x = b[0].x + Block.SIZE * 2;
         tempB[3].y = b[0].y;
 
         updateXY(1);
