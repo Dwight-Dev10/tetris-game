@@ -59,9 +59,10 @@ public class GamePanel extends JPanel implements Runnable{
 
     private void update(){
         // Update information such as character position
-        pm.update();
+        if (KeyHandler.pausePressed == false) {
+            pm.update();
+        }
     }
-
     // Draw the screen with the update information.
     public void paintComponent(Graphics g){
         super.paintComponent(g);
