@@ -1,17 +1,20 @@
 package main;
 
+import GameBoard.GamePanel;
+
 import javax.swing.*;
 
 public class Main {
     public static void main(String[] args) {
-       //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
 
         JFrame window = new JFrame("Simple Tetris");
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // exit out of application
         window.setResizable(false); // prevent frame from being resized by users
 
-        GamePanel gp = new GamePanel();
+        PlayManager game = new PlayManager();
+
+
+        GamePanel gp = new GamePanel(game); //expected args
         window.add(gp);
         window.pack();
 

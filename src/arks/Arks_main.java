@@ -1,9 +1,9 @@
 package arks;
-import main.KeyHandler;
+import GameBoard.Board;
+import GameBoard.KeyHandler;
 import main.PlayManager;
 
 import java.awt.*;
-import java.nio.file.FileAlreadyExistsException;
 
 public class Arks_main {
     // This will be the super class for all arks and for different shape
@@ -13,6 +13,9 @@ public class Arks_main {
     public int direction = 1; // there are four directions
     boolean leftCollision, rightCollision, bottomCollision;
     public boolean active = true;
+    public boolean deactivating;
+    int deactivateCounter = 0;
+    private final Board board = new Board();
 
     public void create(Color c){
         b[0] = new Block(c);
@@ -56,6 +59,8 @@ public class Arks_main {
         rightCollision = false;
         bottomCollision = false;
 
+        checkStaticBlockCollison();
+
         // Check frame collision
         // Left wall
         for (int i = 0; i < b.length; i++){
@@ -82,6 +87,9 @@ public class Arks_main {
         rightCollision = false;
         bottomCollision = false;
 
+        // check static block
+        checkStaticBlockCollison();
+
         // Check frame collision
         // Left wall
         for (int i = 0; i < b.length; i++){
@@ -99,7 +107,39 @@ public class Arks_main {
                 bottomCollision = true;
         }
     }
+    public void checkStaticBlockCollison(){
+        for (int i = 0; i < PlayManager.staticBlocks.size(); i++){
+            int targetX = PlayManager.staticBlocks.get(i).x;
+            int targetY = PlayManager.staticBlocks.get(i).y;
+
+            // Check Down
+            for(int j = 0; j < b.length; j++){
+                if (b[j].y + Block.SIZE == targetY && b[j].x == targetX) {
+                    bottomCollision = true;
+                }
+            }
+            // check left
+            for(int j = 0; j < b.length; j++){
+                if (b[j].x - Block.SIZE == targetY && b[j].y == targetY) {
+                    leftCollision = true;
+                }
+            }
+
+            // check right
+            for(int j = 0; j < b.length; j++){
+                if (b[j].x + Block.SIZE == targetY && b[j].y == targetY) {
+                    rightCollision = true;
+                }
+            }
+
+
+        }
+    }
     public void update(){
+
+        if (deactivating) {
+            deactivating();
+        }
 
         if (KeyHandler.UpPressed){
             // Handles rotations
@@ -145,7 +185,7 @@ public class Arks_main {
             KeyHandler.rightPressed = false;
         }
         if (bottomCollision){
-            active = false;
+            deactivating = true;
         }
         else {
             autoDropCounter++; // the counter increases in every frame
@@ -159,6 +199,21 @@ public class Arks_main {
         }
     }
 
+
+    public void deactivating() {
+        deactivateCounter++;
+        // Wait 45 frams unitl diactive
+        if (deactivateCounter == 45){
+
+            deactivateCounter = 0;
+            checkMovementCollision(); // check if the bottom is still hitting
+
+            // iif the bottom is still hitting after 45 frames, deactivate4 the mino
+            if (bottomCollision) {
+                active = false;
+            }
+        }
+    }
     public void draw(Graphics2D g2){
 
         int margin = 2;

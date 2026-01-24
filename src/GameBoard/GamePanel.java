@@ -1,10 +1,12 @@
-package main;
+package GameBoard;
+
+import main.PlayManager;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class GamePanel extends JPanel implements Runnable{
-    /** main.GamePanel:
+    /** GameBoard.GamePanel:
      *  a primary drawing surface where all game elements
      * (characters, backgrounds, objects) are
      * rendered and updated within a game loop **/
@@ -15,22 +17,22 @@ public class GamePanel extends JPanel implements Runnable{
 
     final int FPS = 60;
     Thread gameThread;
-    PlayManager pm;
+    final PlayManager pm;
 
-    public GamePanel(){
+    public GamePanel(PlayManager pm){
+
 
         // Panel Settings
-        this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
-        this.setBackground(Color.black);
-        this.setLayout(null);
+        setPreferredSize(new Dimension(WIDTH, HEIGHT));
+        setBackground(Color.black);
+        setLayout(null);
 
         // KeyListeners
-        this.addKeyListener(new KeyHandler());
-        this.setFocusable(true);
-
-
-        pm = new PlayManager();
+        addKeyListener(new KeyHandler());
+        setFocusable(true);
+        this.pm = pm;
     }
+
     public void launchGame(){
         gameThread = new Thread(this);
         gameThread.start(); // Automatically calls run
@@ -64,6 +66,7 @@ public class GamePanel extends JPanel implements Runnable{
         }
     }
     // Draw the screen with the update information.
+    @Override
     public void paintComponent(Graphics g){
         super.paintComponent(g);
 
