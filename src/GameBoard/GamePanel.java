@@ -61,7 +61,7 @@ public class GamePanel extends JPanel implements Runnable{
 
     private void update(){
         // Update information such as character position
-        if (KeyHandler.pausePressed == false) {
+        if (!KeyHandler.pausePressed) {
             pm.update();
         }
     }

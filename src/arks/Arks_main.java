@@ -136,7 +136,8 @@ public class Arks_main {
         }
     }
     public void update(){
-
+        // Arks dropdown
+        int dropInterval = 60; // arks drops every 60 frames
         if (deactivating) {
             deactivating();
         }
@@ -189,7 +190,7 @@ public class Arks_main {
         }
         else {
             autoDropCounter++; // the counter increases in every frame
-            if (autoDropCounter == PlayManager.dropIntrerval){
+            if (autoDropCounter == dropInterval){
                 b[0].y += Block.SIZE;
                 b[1].y += Block.SIZE;
                 b[2].y += Block.SIZE;
