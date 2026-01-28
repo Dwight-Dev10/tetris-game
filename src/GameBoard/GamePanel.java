@@ -20,7 +20,7 @@ public class GamePanel extends JPanel implements Runnable{
     final PlayManager pm;
 
     public GamePanel(PlayManager pm){
-
+        this.pm = pm;
 
         // Panel Settings
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
@@ -30,7 +30,7 @@ public class GamePanel extends JPanel implements Runnable{
         // KeyListeners
         addKeyListener(new KeyHandler());
         setFocusable(true);
-        this.pm = pm;
+
     }
 
     public void launchGame(){
@@ -61,7 +61,7 @@ public class GamePanel extends JPanel implements Runnable{
 
     private void update(){
         // Update information such as character position
-        if (!KeyHandler.pausePressed) {
+        if (!KeyHandler.pausePressed  && !pm.gameOver) {
             pm.update();
         }
     }

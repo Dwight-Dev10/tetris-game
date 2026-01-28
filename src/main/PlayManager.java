@@ -18,6 +18,7 @@ public class PlayManager {
     public static int top_y;
     public static int bottom_y;
 
+
     // Arks
     Arks_main currentArks;
     final int ARKS_START_X;
@@ -27,7 +28,16 @@ public class PlayManager {
     final int NEXTARK_Y;
     private final Board board = new Board();
     public static ArrayList<Block> staticBlocks = new ArrayList<>();
+    public boolean gameOver;
+    public static int dropInterval = 60; // arks drops every 60 frames
 
+//    public boolean effectCounterOn;
+//    int effectCounter;
+    ArrayList<Integer> effectY = new ArrayList<>();
+
+    public static int level = 1;
+    public static int lines;
+    public static int score;
 
     public PlayManager() {
         left_x = (GamePanel.WIDTH/2) - (WIDTH/2); // 1280/ 2 -360 /2 = 460
@@ -76,9 +86,14 @@ public class PlayManager {
             staticBlocks.add(currentArks.b[2]);
             staticBlocks.add(currentArks.b[3]);
 
-            currentArks.deactivating = false;
+            // chek if the game is over
+            if(currentArks.b[0].x == ARKS_START_X && currentArks.b[0].y == ARKS_START_Y){
+                // this means the current ark immed. collided a block and couldnt move at all
+                // so its xy are the same with the nextArk
+                gameOver = true;
+            }
 
-            //board.addArks(currentArks);
+            currentArks.deactivating = false;
 
             // replace the current Arks with the next ARK
             currentArks = nextArk;
@@ -86,8 +101,9 @@ public class PlayManager {
             nextArk = pickArk();
             nextArk.setXY(NEXTARK_X, NEXTARK_Y);
 
-            // when a ark beomes inactive, check if lines can ve deleted
+            // when an ark becomes inactive, check if lines can be deleted
             board.checkDelete();
+            //checkDelete();
         }
         currentArks.update();
     }
@@ -107,6 +123,13 @@ public class PlayManager {
         g2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
         g2.drawString("NEXT", x + 60, y + 60);
 
+        g2.drawRect(x, top_y, 250, 300);
+        x += 40;
+        y = top_y +90;
+        g2.drawString("LEVEL: " + level, x, y); y += 70;
+        g2.drawString("LINES: " + lines, x, y); y += 70;
+        g2.drawString("SCORE: " + score, x, y);
+
         // Draw the currentArk
         if(currentArks != null){
             currentArks.draw(g2);
@@ -119,14 +142,29 @@ public class PlayManager {
             staticBlocks.get(i).draw(g2);
         }
 
-        // Draw Pause
+        //Draw effects
+        board.drawBoard(g2);
+
+        // Draw Pause or Game Over
         g2.setColor(Color.yellow);
         g2.setFont(g2.getFont().deriveFont(50f));
-        if (KeyHandler.pausePressed){
+        if(gameOver){
+            x = left_x + 25;
+            y = top_y + 320;
+            g2.drawString("Game Over Loser!!!", x, y);
+        } else if (KeyHandler.pausePressed){
             x = left_x + 20;
             y = top_y + 320;
             g2.drawString("Game Paused", x ,y);
         }
+
+        // Draw the Game Title
+        x = 35;
+        y = top_y + 320;
+        g2.setColor(Color.WHITE);
+        g2.setFont(new Font("Times New Roman", Font.ITALIC, 60));
+        g2.drawString("ArkTris", x + 2, y);
+
 
     }
 
