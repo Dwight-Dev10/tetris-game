@@ -88,9 +88,12 @@ public class PlayManager {
 
             // chek if the game is over
             if(currentArks.b[0].x == ARKS_START_X && currentArks.b[0].y == ARKS_START_Y){
-                // this means the current ark immed. collided a block and couldnt move at all
+                // this means the current ark immediately collided a block and couldnt move at all
                 // so its xy are the same with the nextArk
                 gameOver = true;
+                //Sound
+                GamePanel.music.stop();
+                GamePanel.se.play(2,false);
             }
 
             currentArks.deactivating = false;
@@ -137,7 +140,7 @@ public class PlayManager {
 
         // Draw the next ark
         nextArk.draw(g2);
-        //board.draw(g2);
+
         for ( int i = 0; i < staticBlocks.size(); i++) {
             staticBlocks.get(i).draw(g2);
         }

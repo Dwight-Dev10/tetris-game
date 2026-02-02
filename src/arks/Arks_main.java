@@ -1,5 +1,6 @@
 package arks;
 import GameBoard.Board;
+import GameBoard.GamePanel;
 import GameBoard.KeyHandler;
 import main.PlayManager;
 
@@ -151,6 +152,7 @@ public class Arks_main {
                 case 4: getDirections1();break;
             }
             KeyHandler.UpPressed = false;
+            GamePanel.se.play(3, false);
         }
         checkMovementCollision();
 
@@ -186,7 +188,11 @@ public class Arks_main {
             KeyHandler.rightPressed = false;
         }
         if (bottomCollision){
+            if (!deactivating){
+                GamePanel.se.play(4, false);
+            }
             deactivating = true;
+
         }
         else {
             autoDropCounter++; // the counter increases in every frame

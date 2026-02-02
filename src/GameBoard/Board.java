@@ -81,7 +81,10 @@ public class Board {
                 y += Block.SIZE;
             }
         }
+        // Add Score
         if(lineCount > 0){
+            GamePanel.se.play(1,false); // Sound
+
             int singleLinesScore = 10 * PlayManager.level;
             PlayManager.score += singleLinesScore * lineCount;
         }

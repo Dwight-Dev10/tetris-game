@@ -1,6 +1,7 @@
 package GameBoard;
 
 import main.PlayManager;
+import main.Sound;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,6 +19,8 @@ public class GamePanel extends JPanel implements Runnable{
     final int FPS = 60;
     Thread gameThread;
     final PlayManager pm;
+    public static Sound music =  new Sound();
+    public static Sound se = new Sound();
 
     public GamePanel(PlayManager pm){
         this.pm = pm;
@@ -36,6 +39,10 @@ public class GamePanel extends JPanel implements Runnable{
     public void launchGame(){
         gameThread = new Thread(this);
         gameThread.start(); // Automatically calls run
+
+        // Music starts
+        music.play(0, true);
+        music.loop();
     }
 
     @Override
