@@ -4,16 +4,16 @@ A fully playable Tetris clone built in Java using Swing, designed with object-or
 
 This project was built to strengthen Java fundamentals, explore OOP design, and practice system-level thinking through a complete, shippable application.
 
-✨ Features:
-  🧱 Classic Tetris gameplay
-  🔄 Piece rotation with collision handling
-  ⬇️ Gravity-based drop system with frame timing
-  ⌨️ Keyboard input handling
-  ⏸️ Pause functionality
-  🔊 Sound effects and background music
-  🧠 Next-piece preview
-  🧩 Line clearing & stacking logic
-  🖼️ Custom rendering using Graphics2D
+- ✨ Features:
+  - 🧱 Classic Tetris gameplay
+  - 🔄 Piece rotation with collision handling
+  - ⬇️ Gravity-based drop system with frame timing
+  - ⌨️ Keyboard input handling
+  - ⏸️ Pause functionality
+  - 🔊 Sound effects and background music
+  - 🧠 Next-piece preview
+  - 🧩 Line clearing & stacking logic
+  - 🖼️ Custom rendering using Graphics2D
 
 # 🏗️ Architecture Overview
 
