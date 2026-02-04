@@ -21,7 +21,7 @@ The project is structured to keep responsibilities clear and maintainable:
 
 **Core Components**
 
-- GamePanel
+-GamePanel
  - Main rendering surface
  - Owns the game loop (FPS + delta timing)
  - Delegates updates and drawing
