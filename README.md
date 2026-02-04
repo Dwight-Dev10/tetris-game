@@ -19,45 +19,37 @@ This project was built to strengthen Java fundamentals, explore OOP design, and 
 
 The project is structured to keep responsibilities clear and maintainable:
 
-# **Core Components**
+**Core Components**
 
--GamePanel
+- GamePanel
  - Main rendering surface
  - Owns the game loop (FPS + delta timing)
  - Delegates updates and drawing
 
-PlayManager
+- PlayManager
+ - Central game controller
+ - Manages game state, piece lifecycle, and rules
+ - Coordinates current piece, next piece, and static blocks
 
-Central game controller
+- Arks_main
+ - Base class for all Tetris pieces
+ - Handles movement, rotation, collision detection
+ - Uses inheritance for shape-specific behavior
 
-Manages game state, piece lifecycle, and rules
+- Block
+  - Represents a single tile unit
+  - Encapsulates position, size, and color
 
-Coordinates current piece, next piece, and static blocks
+- KeyHandler
+ - Captures and processes player input
+ - Decoupled from game logic
 
-Arks_main
+- Sound
+ - Handles audio playback and looping
+ - Loads resources from the classpath
+ - Manages sound effects and music independently
 
-Base class for all Tetris pieces
 
-Handles movement, rotation, collision detection
 
-Uses inheritance for shape-specific behavior
 
-Block
 
-Represents a single tile unit
-
-Encapsulates position, size, and color
-
-KeyHandler
-
-Captures and processes player input
-
-Decoupled from game logic
-
-Sound
-
-Handles audio playback and looping
-
-Loads resources from the classpath
-
-Manages sound effects and music independently
